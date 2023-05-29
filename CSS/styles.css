@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;700;900&family=Montserrat:wght@100;300;400;500;800&family=Raleway:wght@200;400;600&display=swap');
+/* fuentes para usar: 
+font-family: 'Libre Franklin', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Raleway', sans-serif; */
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    background: #fff;
+    font-family: 'Raleway', sans-serif;
+  }
+ 
+#productos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 48px;
+    padding-left: 15px;
+    color: 5f2c91;
+  }
+
+button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    padding: 14px;
+    text-decoration: none;
+    border-radius: 28px;
+    box-shadow: 0px 1px 3px #666666;
+    text-shadow: 1px 1px 3px #666666;
+    background: linear-gradient(#5f2c91, #e60182 ,#fec200);
+  }
+button:hover{
+    background: linear-gradient(#008566, #4877f3, #fe5e00);
+  }

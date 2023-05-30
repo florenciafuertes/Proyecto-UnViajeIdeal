@@ -97,7 +97,7 @@ function actualizarCarrito() {
         <div class="contenedorViajes">
             <h5>${destino.nombre}</h5>
             <img src="${destino.img}" alt="">
-            <strong><p class="precio">Precio por unidad: ${destino.precio}</p></strong>
+            <strong><p class="precio">Precio por unidad: $${destino.precio}</p></strong>
             <button id="eliminar${destino.id}" class="btn-eliminar">Eliminar</button>
         </div>
         `;
@@ -121,7 +121,7 @@ function actualizarCarrito() {
     });
   });
 
-  precioFinal.innerText = total.toFixed(2);
+  precioFinal.innerText = `$${total.toFixed(2)}`;
 }
 
 // Función para guardar

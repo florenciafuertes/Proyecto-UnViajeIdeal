@@ -39,3 +39,7 @@ button {
 button:hover{
     background: linear-gradient(#008566, #4877f3, #fe5e00);
   }
+.destino {
+    background-color: #008566;
+    text-align: center;
+}

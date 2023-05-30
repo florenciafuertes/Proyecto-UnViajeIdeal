@@ -24,7 +24,6 @@ body {
     padding-left: 15px;
     color: 5f2c91;
   }
-
 button {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -40,6 +39,18 @@ button:hover{
     background: linear-gradient(#008566, #4877f3, #fe5e00);
   }
 .destino {
-    background-color: #008566;
+    background-color: hsl(164, 11%, 81%);
     text-align: center;
+}
+h4 {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+img {
+  width: 250px;
+}
+.contenedor{
+  padding-left: 40px;
+  padding-top: 40px;
 }

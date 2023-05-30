@@ -1,84 +1,70 @@
-//array vacío para que se guarden los productos(destinos)
+// Array vacío para guardar los productos (destinos)
 let miViaje = [];
 
-//espacio para mostrar los objetos(productos)
+// Espacio para mostrar los objetos (productos)
 const productos = document.getElementById('productos');
 
-//precio final de la compra
+// Precio final de la compra
 const precioFinal = document.getElementById('precioFinal');
 
-// espacio donde para mi carrito
+// Espacio para mi carrito
 const destinosElegidos = document.getElementById('miViaje');
 
-//func para mostrar los productos con array para parámetros
+// Función para mostrar los productos con array como parámetro
 mostrarDestinos(destinos);
 
-//func para mostrarlos
+// Función para mostrar los destinos
 function mostrarDestinos(array) {
   productos.innerHTML = '';
 
-  //recorrer los destinos e indicar que cada objeto sea un producto
+  // Recorrer los destinos e indicar que cada objeto sea un producto
   for (const destino of array) {
     let contenedor = document.createElement('div');
-    contenedor.className = 'destino'; //classname para ese contenedor
-    //abajo hago uno para cada destino
+    contenedor.className = 'destino'; // Clase para ese contenedor
+
+    // Contenido HTML para cada destino
     contenedor.innerHTML = `
         <div class="contenedorViajes">
-            <h5>${destino.nombre}</h5>
+            <h4>${destino.nombre}</h4>
             <img src="${destino.img}" alt="">
             <div>
             <p>Cantidad de días: ${destino.dias}</p>
             <p>${destino.cantidad}</p>
             <p>${destino.descripcion}</p>
             </div>
-            <p class="precio">Precio $${destino.precio}</p>
+            <strong><p class="precio">Precio $${destino.precio}</p></strong>
         </div>
         <button id="botonElegir${destino.id}">Agregar</button>  
         <br>     
         `;
-    // cada objeto será un elemnto HTML hijo
+
+    // Cada objeto será un elemento HTML hijo
     productos.appendChild(contenedor);
 
-    //boton
+    // Botón para agregar
     let botonElegir = document.getElementById(`botonElegir${destino.id}`);
-    botonElegir.addEventListener('click', () => {
-      console.log(`Elegido ${destino.nombre}`);
-      agregarDestinos(destino.id);
-    });
+    botonElegir.addEventListener('click', agregarDestinos.bind(null, destino.id));
   }
 }
 
-//agregar destinos al carrito
+// Función para agregar destinos al carrito
 function agregarDestinos(id) {
   let add = miViaje.find(item => item.id === id);
 
-  //condiciones
+  // Condiciones
   if (add) {
     add.cantidad = add.cantidad + 1;
     let cantidadElement = document.getElementById(`cantidad${add.id}`);
     cantidadElement.innerHTML = `Cantidad: ${add.cantidad}`;
     actualizarCarrito();
   } else {
-    let sumarDestino = destinos.find(elemento => elemento.id == id);
+    let sumarDestino = destinos.find(elemento => elemento.id === id);
 
-    //agregar y mostrar
+    // Agregar y mostrar
     miViaje.push(sumarDestino);
     actualizarCarrito();
 
-    //el div en donde se va a mostrar
-    let div = document.createElement('div');
-    div.className = 'compra';
-    div.innerHTML = `
-        <div class="contenedorViajes">
-            <h5>${sumarDestino.nombre}</h5>
-            <img src="${sumarDestino.img}" alt="">
-            <p class="precio">Precio por unidad: ${sumarDestino.precio}</p>
-            <button id="eliminar${sumarDestino.id}" class="btn-eliminar">Eliminar</button>
-        </div>
-        `;
-    destinosElegidos.appendChild(div);
-
-    //eliminar
+    // Eliminar
     let trash = document.getElementById(`eliminar${sumarDestino.id}`);
     trash.addEventListener('click', () => {
       console.log(`${sumarDestino.nombre} ELIMINADO`);
@@ -91,16 +77,16 @@ function agregarDestinos(id) {
       // Actualizar el contenido del carrito en el DOM
       destinosElegidos.removeChild(div);
 
-      // que el cambio se almacene en mi storage si elimino un producto
+      // Almacenar el cambio en el localStorage si se elimina un producto
       localStorage.setItem('compraViaje', JSON.stringify(miViaje));
     });
 
-    // Que lo agregado se almacene
+    // Almacenar lo agregado
     localStorage.setItem('compraViaje', JSON.stringify(miViaje));
   }
 }
 
-// Función actualizar carrito
+// Función para actualizar el carrito
 function actualizarCarrito() {
   destinosElegidos.innerHTML = '';
   let total = 0;
@@ -111,7 +97,7 @@ function actualizarCarrito() {
         <div class="contenedorViajes">
             <h5>${destino.nombre}</h5>
             <img src="${destino.img}" alt="">
-            <p class="precio">Precio por unidad: ${destino.precio}</p>
+            <strong><p class="precio">Precio por unidad: ${destino.precio}</p></strong>
             <button id="eliminar${destino.id}" class="btn-eliminar">Eliminar</button>
         </div>
         `;
@@ -130,7 +116,7 @@ function actualizarCarrito() {
       // Actualizar el contenido del carrito en el DOM
       destinosElegidos.removeChild(div);
 
-      // que el cambio se almacene en mi storage si elimino un producto
+      // Almacenar el cambio en el localStorage si se elimina un producto
       localStorage.setItem('compraViaje', JSON.stringify(miViaje));
     });
   });
@@ -138,7 +124,7 @@ function actualizarCarrito() {
   precioFinal.innerText = total.toFixed(2);
 }
 
-// Función guardar
+// Función para guardar
 function guardar() {
   let guardarStorage = JSON.parse(localStorage.getItem('compraViaje'));
 

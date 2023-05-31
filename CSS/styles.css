@@ -57,3 +57,10 @@ img {
 #precioFinal{
   font-weight: 800;
 }
+#detalleCompra{
+  display: grid;
+  grid-template-columns: repeat(auto, 1fr);
+  justify-content: center;
+  background-color: #666666;
+  color: #fff;
+}

@@ -10,6 +10,9 @@ const precioFinal = document.getElementById('precioFinal');
 // Espacio para mi carrito
 const destinosElegidos = document.getElementById('miViaje');
 
+// Espacio para la compra 
+const detalleCompra = document.getElementById('detalleCompra');
+
 // Función para mostrar los productos con array como parámetro
 mostrarDestinos(destinos);
 
@@ -137,6 +140,7 @@ function guardar() {
 
 guardar(); // Llamada a la función guardar
 
+//vaciar carrito
 let resetButton = document.getElementById('resetButton');
 
 resetButton.addEventListener('click', () => {
@@ -155,3 +159,33 @@ resetButton.addEventListener('click', () => {
   // Volver a mostrar los destinos en la interfaz
   mostrarDestinos(destinos);
 });
+
+// Mostrar el detalle de la compra
+function mostrarDetalleCompra() {
+  detalleCompra.innerHTML = ''; // Limpiar el contenido del detalle
+
+  if (miViaje.length === 0) {
+    detalleCompra.innerText = 'No hay destinos en el carrito'; // Mostrar mensaje si el carrito está vacío
+  } else {
+    let detalle = 'Detalle de la compra:\n\n';
+
+    miViaje.forEach((destino, index) => {
+      detalle += `Destino ${index + 1}:\n`;
+      detalle += `Nombre: ${destino.nombre}\n`;
+      detalle += `Precio: $${destino.precio.toFixed(2)}\n`;
+      detalle += '---------------------\n';
+    });
+
+    detalle += `Precio final: $${precioFinal.innerText}\n`;
+
+    detalleCompra.innerText = detalle; // Mostrar el detalle de la compra en el div
+  }
+}
+
+let comprarButton = document.getElementById('comprarButton');
+
+comprarButton.addEventListener('click', () => {
+  mostrarDetalleCompra();
+});
+
+

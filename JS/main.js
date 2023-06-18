@@ -13,14 +13,25 @@ const destinosElegidos = document.getElementById('miViaje');
 // Espacio para la compra 
 const detalleCompra = document.getElementById('detalleCompra');
 
-// Función para mostrar los productos con array como parámetro
-mostrarDestinos(destinos);
+// Variable global para los destinos
+let destinos;
+
+// Cargar el JSON de destinos y llamar a la función mostrarDestinos
+fetch("JS/data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    destinos = data; // Asignar el array de destinos a la variable destinos
+    mostrarDestinos(destinos);
+  })
+  .catch((error) => {
+    console.error("Error al cargar el JSON de destinos:", error);
+  });
 
 // Función para mostrar los destinos
 function mostrarDestinos(array) {
   productos.innerHTML = '';
 
-  // Recorrer los destinos e indicar que cada objeto sea un producto
+  // Recorrer los destinos e indicar que cada objeto sea un producto  
   for (const destino of array) {
     let contenedor = document.createElement('div');
     contenedor.className = 'destino'; // Clase para ese contenedor
@@ -42,11 +53,30 @@ function mostrarDestinos(array) {
         `;
 
     // Cada objeto será un elemento HTML hijo
-    productos.appendChild(contenedor);
+    productos.appendChild(contenedor); 
 
     // Botón para agregar
     let botonElegir = document.getElementById(`botonElegir${destino.id}`);
-    botonElegir.addEventListener('click', agregarDestinos.bind(null, destino.id));
+    botonElegir.addEventListener('click', ()=>{
+      console.log(`Elegido ${destino.nombre}`);
+      Toastify({
+          text: `Agregaste ${destino.nombre} a tu carrito con éxito`,
+          duration: 2500,
+          destination: "https://github.com/apvarun/toastify-js",
+          newWindow: true,
+          close: true,
+          gravity: "bottom", 
+          position: "right", 
+          stopOnFocus: true, 
+          style: {
+            background: "linear-gradient(to right, #8a2be2, #d87093)",
+          },
+          onClick: function(){} 
+        }).showToast();
+
+        // llamo a la funcion que agrega mis productos
+        agregarDestinos(destino.id)
+    })
   }
 }
 
@@ -176,7 +206,7 @@ function mostrarDetalleCompra() {
       detalle += '---------------------\n';
     });
 
-    detalle += `Precio final: $${precioFinal.innerText}\n`;
+    detalle += `Precio final: ${precioFinal.innerText}\n`;
 
     detalleCompra.innerText = detalle; // Mostrar el detalle de la compra en el div
   }
@@ -188,4 +218,40 @@ comprarButton.addEventListener('click', () => {
   mostrarDetalleCompra();
 });
 
+//filtrado de formulario
+document.getElementById('btn-submit').addEventListener('click', function(event) {
+  event.preventDefault();
 
+  var duracionSeleccionada = document.getElementById('duracion').value;
+
+  fetch('JS/data.json')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      var productosFiltrados = filtrarProductosPorDuracion(data.productos, duracionSeleccionada);
+      mostrarProductos(productosFiltrados);
+    })
+    .catch(function(error) {
+      console.log('Error al cargar el archivo JSON:', error);
+    });
+});
+
+function filtrarProductosPorDuracion(productos, duracionSeleccionada) {
+  var productosFiltrados = productos.filter(function(producto) {
+    return producto.duracion === parseInt(duracionSeleccionada);
+  });
+
+  return productosFiltrados;
+}
+
+function mostrarProductos(productos) {
+  var resultadosElement = document.getElementById('resultados');
+  resultadosElement.innerHTML = '';
+
+  productos.forEach(function(producto) {
+    var productoElement = document.createElement('div');
+    productoElement.textContent = producto.nombre;
+    resultadosElement.appendChild(productoElement);
+  });
+}

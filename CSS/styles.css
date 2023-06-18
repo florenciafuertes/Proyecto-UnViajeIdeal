@@ -12,7 +12,12 @@ body {
     background: #fff;
     font-family: 'Raleway', sans-serif;
   }
- 
+.navbar{
+  background-color: #fff;
+} 
+.nav-link{
+  color: black;
+}
 #productos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -24,6 +29,7 @@ body {
     padding-left: 15px;
     color: 5f2c91;
   }
+/* BOTONES */
 button {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -33,14 +39,18 @@ button {
     border-radius: 28px;
     box-shadow: 0px 1px 3px #666666;
     text-shadow: 1px 1px 3px #666666;
-    background: linear-gradient(#5f2c91, #e60182 ,#fec200);
+    background: linear-gradient(#8340c6, #faabd8 ,#352a60);
   }
 button:hover{
-    background: linear-gradient(#008566, #4877f3, #fe5e00);
+    background: linear-gradient(#0efcc4, #3ecfc5, #bdff61);
   }
+button i{
+  margin: 0.8em;
+}
 .destino {
-    background-color: hsl(164, 11%, 81%);
+    background: radial-gradient(#5462e1, #c188fb, #fff2f8);
     text-align: center;
+    padding: 0.5em;
 }
 h4 {
   font-weight: 800;
@@ -51,8 +61,37 @@ img {
   width: 250px;
 }
 .contenedor{
-  padding-left: 40px;
-  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 0.4em;
+  height: 300px;
+  margin-bottom: 1em;
+}
+.contenedor-img {
+  margin-left: auto;
+  padding-right: 1em;
+  width: 45%;
+}
+.contenedor-txt{
+  padding-left: 3em;
+  padding-top: 4em;
+  font-size: 30px;
+}
+.contenedor-txt h2{
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+.contenedor-productos{
+  margin-left: 1.5em;
+}
+.contenedor-productos a{
+  color: black;
+  text-decoration: none;
+}
+@media all and (max-width: 768px){
+  .contenedor{
+    height: 150px;
+  }
 }
 #precioFinal{
   font-weight: 800;
@@ -63,4 +102,91 @@ img {
   justify-content: center;
   background-color: #666666;
   color: #fff;
+}
+
+/*FORMULARIO*/
+.form-conteiner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.formulario{
+	margin-top: 1rem;
+	padding: 20px;
+	width: 45%;
+	font-weight: 400;
+	line-height: 2rem;
+	background-image: linear-gradient(#fff, #d159ec, #c8dcff, #fff);
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+@media all and (max-width: 768px){
+	.formulario{
+		width: 95%;
+		margin: 2rem;
+	}
+}
+.formulario button{
+  margin: 1em 1em 0.5em 0em;
+}
+
+/* PIE DE PÁGINA */
+.footer{
+	grid-area: footer;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 2rem;
+	padding-top: 1rem ;
+	background-image: linear-gradient(#fff, #d6e1f7, #6793de);
+	width: 100%;
+}
+@media all and (max-width: 400px){
+	.footer{
+		font-size: 12px;
+	}
+}
+.footer__redes{
+	display: grid;
+	grid-template-areas:
+	"title title title"
+	"img instagram ."
+	"img youtube ."
+	"img facebook ."
+	;
+	grid-column-gap: 10px;
+}
+.footer a{
+	text-decoration: none;
+	color: black ;
+}
+.footer__nav ul{
+	list-style: none;
+	margin-left: 1rem;
+	line-height: 1.4rem;
+}
+.footer__title{
+	grid-area: title;
+	font-weight: 800;
+	text-transform: uppercase;
+	margin-bottom: 1rem;
+	color: black;
+	margin-inline-end: 1rem;
+}
+.footer__img{
+	grid-area: img;
+	height: 75px;
+  width: 30px;
+	text-align: right;
+}
+.footer__ig{
+	grid-area: instagram;
+}
+.footer__yt{
+	grid-area: youtube;
+}
+.footer__fb{
+	grid-area: facebook;
 }

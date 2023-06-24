@@ -115,8 +115,26 @@
                     <label for="no">NO</label>
                     <input type="radio" name="newslater" id="no" value="no">
                 </div>
-                <button class="btn btn-primary" id="btn-submit">¡Quiero ver mi recomendación viajera!</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">¡Quiero ver mi recomendación viajera!</button>
                 <button type="reset" class="btn btn-primary">Borrar</button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Ups! estamos trabajando sobre esta opción pero no dejes de ver nuestros combos o ponerte en contacto con nosotros
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cerrar</button>
+                        <button type="button" class="btn btn-primary"><a href="productos.html">Ver combos</a></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </form>
         </div>                   
     </main>

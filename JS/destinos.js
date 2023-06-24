@@ -1,4 +1,4 @@
-/*let destinos = [
+let destinos = [
     {
         id: 1, 
         nombre: "Rio Negro y Neuquen", 
@@ -179,4 +179,4 @@
         descripcion: 'Ver el glaciar Perito Moreno, navegar los lagos y caminar por sus bosques', 
         img: "./ASSETS/StaCruz02.jpg",
     },
-];*/
+];
